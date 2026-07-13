@@ -1,21 +1,101 @@
-🎯 TalentScout: AI Recruitment Assistant
+# 🎯 TalentScout AI — Intelligent Technical Screening Assistant
 
-📖 Project Overview
+TalentScout AI is a conversational, AI-driven technical screening assistant that automates the first round of hiring. It conducts structured, real-time interviews with candidates, dynamically generates technical questions based on their tech stack, and extracts structured candidate data — bridging the gap between static application forms and human interviews.
 
-TalentScout is an intelligent, automated technical screening tool designed to simplify the hiring process. Built with Streamlit and powered by the lightning-fast Groq LPU Inference Engine, this application acts as a first-line recruiter. It engages candidates in natural conversation to collect essential details and then pivots into a customized technical interview based on their specific skills. 🚀
+🔗 **Live Demo:** [Try TalentScout AI](https://lnkd.in/dd5qhQGu)
 
-🧠 How It Works
+---
 
-The assistant operates using a dual-model logic. While the primary model (Llama 3.3 70B) handles the complex task of interviewing, a secondary, faster model (Llama 3.1 8B) works silently in the background. This "Observer" model scans the chat history to extract structured data like names and emails, updating the candidate's profile in real-time without interrupting the flow of conversation. 🔍
+## 📌 Overview
 
-✨ Key Features
+Traditional first-round technical screening is time-consuming and inconsistent. TalentScout AI solves this by using a **dual-LLM pipeline** to conduct adaptive, role-based interviews — asking relevant technical questions, tracking profile completion in real time, and converting free-form conversation into clean, structured data recruiters can act on immediately.
 
-The app features a reactive Dashboard UI that provides immediate feedback to the user. As you chat, a sidebar displays your professional profile and a progress bar that tracks how close you are to completing the screening. By automating the information-gathering phase, TalentScout allows human recruiters to focus their time on the most qualified candidates, significantly reducing the "time-to-hire." 📊
+---
 
-🛠️ Technical Foundation
+## 🚀 Key Features
 
-On the backend, the project leverages Python and the Groq API to achieve sub-second response times. Security is a top priority, so the app is designed to manage API secrets through environment variables and .gitignore files, ensuring that sensitive keys are never exposed on public platforms like GitHub. The interface is further polished with custom CSS to provide a modern, chat-centric user experience. 💻
+- 🤖 **AI-Powered Conversational Flow** — Natural, multi-turn interview experience instead of rigid forms
+- 🧠 **Dynamic Technical Questioning** — Questions generated on the fly based on the candidate's declared tech stack
+- 📊 **Real-Time Progress Tracking** — Live profile completion indicator throughout the conversation
+- 🗂️ **Structured Data Extraction** — Automatically parses conversation into structured JSON (skills, experience, responses)
+- 🎨 **Dashboard-Style UI** — Clean, recruiter-friendly interface built with Streamlit
+- 🔐 **Secure API Handling** — Environment-variable-based key management, no hardcoded secrets
+- 💾 **Session State Management** — Maintains conversational memory and context across the interview
 
-🚀 Getting Started
+---
 
-To run this project locally, you simply need to clone the repository, install the dependencies listed in the requirements.txt file, and provide your own Groq API key in a .env file. Once configured, a single command—streamlit run app.py—launches the full recruitment portal in your browser, ready to screen the next top talent. 🌟
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python |
+| UI Framework | Streamlit |
+| LLM Infrastructure | Groq Cloud (LPU Inference) |
+| Primary Model | LLaMA 3.3 70B |
+| Secondary Model | LLaMA 3.1 8B |
+| Core Technique | Prompt Engineering (role-based & phase-driven) |
+
+---
+
+## 🧩 How It Works
+
+1. **Candidate Onboarding** — Candidate enters basic details and declares their tech stack
+2. **Adaptive Interview Phase** — The dual-LLM pipeline drives a phase-based conversation:
+   - **LLaMA 3.3 70B** handles complex reasoning, question generation, and technical evaluation
+   - **LLaMA 3.1 8B** handles lightweight tasks like entity extraction and quick validations, keeping the pipeline fast and cost-efficient
+3. **Dynamic Question Generation** — Questions adapt in real time based on the candidate's responses and stated skills
+4. **Structured Extraction** — Key information (skills, experience, answers) is parsed into JSON as the conversation progresses
+5. **Progress Dashboard** — Recruiters/candidates see live profile completion status throughout
+
+---
+
+## ⚙️ Architecture Highlights
+
+- **Multi-model design**: splits reasoning-heavy and lightweight tasks across two LLMs for speed and cost efficiency
+- **Role-based & phase-driven prompting**: each interview phase (intro, technical deep-dive, wrap-up) uses tailored system prompts
+- **Session state management**: Streamlit session state preserves conversational memory across turns
+- **Secure configuration**: API keys and secrets managed via environment variables, never committed to source
+
+---
+
+## 🏗️ Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/talentscout-ai.git
+cd talentscout-ai
+
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up environment variables
+echo "GROQ_API_KEY=your_groq_api_key" > .env
+
+# Run the app
+streamlit run app.py
+```
+
+---
+
+## 🧠 What I Learned
+
+- Designing multi-model AI systems that balance speed, cost, and reasoning quality
+- Role-based and phase-driven prompt engineering for structured conversational flows
+- Secure API key handling using environment variables
+- Managing session state for coherent multi-turn conversational memory
+- Building production-ready, recruiter-facing AI interfaces
+
+---
+
+## 🔮 Future Improvements
+
+- Resume parsing integration for auto-filled candidate profiles
+- Interview scoring and recruiter-facing analytics dashboard
+- Multi-language support for global candidate pools
+- Export structured results directly to ATS platforms
+
+---
